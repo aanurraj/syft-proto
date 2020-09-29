@@ -4759,8 +4759,11 @@ export namespace syft_proto {
             /** Properties of an ObjectMessage. */
             interface IObjectMessage {
 
-                /** ObjectMessage tensor */
-                tensor?: (syft_proto.types.torch.v1.ITorchTensor|null);
+                /** ObjectMessage object_tensor */
+                object_tensor?: (syft_proto.types.torch.v1.ITorchTensor|null);
+
+                /** ObjectMessage object_plan */
+                object_plan?: (syft_proto.execution.v1.IPlan|null);
             }
 
             /** Represents an ObjectMessage. */
@@ -4772,8 +4775,14 @@ export namespace syft_proto {
                  */
                 constructor(properties?: syft_proto.messaging.v1.IObjectMessage);
 
-                /** ObjectMessage tensor. */
-                public tensor?: (syft_proto.types.torch.v1.ITorchTensor|null);
+                /** ObjectMessage object_tensor. */
+                public object_tensor?: (syft_proto.types.torch.v1.ITorchTensor|null);
+
+                /** ObjectMessage object_plan. */
+                public object_plan?: (syft_proto.execution.v1.IPlan|null);
+
+                /** ObjectMessage object. */
+                public object?: ("object_tensor"|"object_plan");
 
                 /**
                  * Creates a new ObjectMessage instance using the specified properties.

@@ -1,0 +1,7 @@
+syft_proto/frameworks/crypten/onnx_model.proto:3:1:Files with package "syft_proto.frameworks.torch.tensors.interpreters.v1" must be within a directory "syft_proto/frameworks/torch/tensors/interpreters/v1" relative to root but were in directory "syft_proto/frameworks/crypten".
+syft_proto/frameworks/crypten/onnx_model.proto:3:1:Multiple directories "syft_proto/frameworks/crypten,syft_proto/frameworks/torch/tensors/interpreters/v1" contain files with package "syft_proto.frameworks.torch.tensors.interpreters.v1".
+syft_proto/frameworks/torch/tensors/interpreters/v1/additive_shared.proto:3:1:Multiple directories "syft_proto/frameworks/crypten,syft_proto/frameworks/torch/tensors/interpreters/v1" contain files with package "syft_proto.frameworks.torch.tensors.interpreters.v1".
+syft_proto/frameworks/torch/tensors/interpreters/v1/precision.proto:3:1:Multiple directories "syft_proto/frameworks/crypten,syft_proto/frameworks/torch/tensors/interpreters/v1" contain files with package "syft_proto.frameworks.torch.tensors.interpreters.v1".
+syft_proto/generic/string.proto:3:1:Files with package "syft_proto.messaging.v1" must be within a directory "syft_proto/messaging/v1" relative to root but were in directory "syft_proto/generic".
+syft_proto/generic/string.proto:3:1:Multiple directories "syft_proto/generic,syft_proto/messaging/v1" contain files with package "syft_proto.messaging.v1".
+syft_proto/messaging/v1/message.proto:3:1:Multiple directories "syft_proto/generic,syft_proto/messaging/v1" contain files with package "syft_proto.messaging.v1".

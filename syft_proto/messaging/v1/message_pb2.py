@@ -14,6 +14,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from syft_proto.execution.v1 import computation_action_pb2 as syft__proto_dot_execution_dot_v1_dot_computation__action__pb2
 from syft_proto.execution.v1 import communication_action_pb2 as syft__proto_dot_execution_dot_v1_dot_communication__action__pb2
+from syft_proto.execution.v1 import plan_pb2 as syft__proto_dot_execution_dot_v1_dot_plan__pb2
 from syft_proto.types.syft.v1 import id_pb2 as syft__proto_dot_types_dot_syft_dot_v1_dot_id__pb2
 from syft_proto.types.torch.v1 import tensor_pb2 as syft__proto_dot_types_dot_torch_dot_v1_dot_tensor__pb2
 from syft_proto.types.syft.v1 import arg_pb2 as syft__proto_dot_types_dot_syft_dot_v1_dot_arg__pb2
@@ -25,9 +26,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n$org.openmined.syftproto.messaging.v1',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n%syft_proto/messaging/v1/message.proto\x12\x17syft_proto.messaging.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x30syft_proto/execution/v1/computation_action.proto\x1a\x32syft_proto/execution/v1/communication_action.proto\x1a!syft_proto/types/syft/v1/id.proto\x1a&syft_proto/types/torch/v1/tensor.proto\x1a\"syft_proto/types/syft/v1/arg.proto\"\xd8\x07\n\x0bSyftMessage\x12\x46\n\x12\x63ontents_empty_msg\x18\x01 \x01(\x0b\x32\x16.google.protobuf.EmptyH\x00R\x10\x63ontentsEmptyMsg\x12\x63\n\x13\x63ontents_delete_msg\x18\x02 \x01(\x0b\x32\x31.syft_proto.messaging.v1.ForceObjectDeleteMessageH\x00R\x11\x63ontentsDeleteMsg\x12_\n\x16\x63ontents_get_shape_msg\x18\x03 \x01(\x0b\x32(.syft_proto.messaging.v1.GetShapeMessageH\x00R\x13\x63ontentsGetShapeMsg\x12Y\n\x14\x63ontents_is_none_msg\x18\x04 \x01(\x0b\x32&.syft_proto.messaging.v1.IsNoneMessageH\x00R\x11\x63ontentsIsNoneMsg\x12X\n\x13\x63ontents_object_msg\x18\x05 \x01(\x0b\x32&.syft_proto.messaging.v1.ObjectMessageH\x00R\x11\x63ontentsObjectMsg\x12n\n\x1b\x63ontents_object_request_msg\x18\x06 \x01(\x0b\x32-.syft_proto.messaging.v1.ObjectRequestMessageH\x00R\x18\x63ontentsObjectRequestMsg\x12\x66\n\x17\x63ontents_tensor_cmd_msg\x18\x07 \x01(\x0b\x32-.syft_proto.messaging.v1.TensorCommandMessageH\x00R\x14\x63ontentsTensorCmdMsg\x12`\n\x15\x63ontents_plan_cmd_msg\x18\x08 \x01(\x0b\x32+.syft_proto.messaging.v1.PlanCommandMessageH\x00R\x12\x63ontentsPlanCmdMsg\x12\x66\n\x17\x63ontents_worker_cmd_msg\x18\t \x01(\x0b\x32-.syft_proto.messaging.v1.WorkerCommandMessageH\x00R\x14\x63ontentsWorkerCmdMsg\x12X\n\x13\x63ontents_search_msg\x18\n \x01(\x0b\x32&.syft_proto.messaging.v1.SearchMessageH\x00R\x11\x63ontentsSearchMsgB\n\n\x08\x63ontents\"J\n\rIsNoneMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\"O\n\rObjectMessage\x12>\n\x06tensor\x18\x01 \x01(\x0b\x32&.syft_proto.types.torch.v1.TorchTensorR\x06tensor\"\xc6\x01\n\x14TensorCommandMessage\x12N\n\x0b\x63omputation\x18\x01 \x01(\x0b\x32*.syft_proto.execution.v1.ComputationActionH\x00R\x0b\x63omputation\x12T\n\rcommunication\x18\x02 \x01(\x0b\x32,.syft_proto.execution.v1.CommunicationActionH\x00R\rcommunicationB\x08\n\x06\x61\x63tion\"W\n\x18\x46orceObjectDeleteMessage\x12;\n\nobject_ids\x18\x01 \x03(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\tobjectIds\"L\n\x0fGetShapeMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\"i\n\x14ObjectRequestMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason\"j\n\x12PlanCommandMessage\x12!\n\x0c\x63ommand_name\x18\x01 \x01(\tR\x0b\x63ommandName\x12\x31\n\x04\x61rgs\x18\x02 \x03(\x0b\x32\x1d.syft_proto.types.syft.v1.ArgR\x04\x61rgs\"l\n\x14WorkerCommandMessage\x12!\n\x0c\x63ommand_name\x18\x01 \x01(\tR\x0b\x63ommandName\x12\x31\n\x04\x61rgs\x18\x02 \x03(\x0b\x32\x1d.syft_proto.types.syft.v1.ArgR\x04\x61rgs\"C\n\rSearchMessage\x12\x32\n\x05query\x18\x01 \x03(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x05queryB&\n$org.openmined.syftproto.messaging.v1b\x06proto3'
+  serialized_pb=b'\n%syft_proto/messaging/v1/message.proto\x12\x17syft_proto.messaging.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x30syft_proto/execution/v1/computation_action.proto\x1a\x32syft_proto/execution/v1/communication_action.proto\x1a\"syft_proto/execution/v1/plan.proto\x1a!syft_proto/types/syft/v1/id.proto\x1a&syft_proto/types/torch/v1/tensor.proto\x1a\"syft_proto/types/syft/v1/arg.proto\"\xd8\x07\n\x0bSyftMessage\x12\x46\n\x12\x63ontents_empty_msg\x18\x01 \x01(\x0b\x32\x16.google.protobuf.EmptyH\x00R\x10\x63ontentsEmptyMsg\x12\x63\n\x13\x63ontents_delete_msg\x18\x02 \x01(\x0b\x32\x31.syft_proto.messaging.v1.ForceObjectDeleteMessageH\x00R\x11\x63ontentsDeleteMsg\x12_\n\x16\x63ontents_get_shape_msg\x18\x03 \x01(\x0b\x32(.syft_proto.messaging.v1.GetShapeMessageH\x00R\x13\x63ontentsGetShapeMsg\x12Y\n\x14\x63ontents_is_none_msg\x18\x04 \x01(\x0b\x32&.syft_proto.messaging.v1.IsNoneMessageH\x00R\x11\x63ontentsIsNoneMsg\x12X\n\x13\x63ontents_object_msg\x18\x05 \x01(\x0b\x32&.syft_proto.messaging.v1.ObjectMessageH\x00R\x11\x63ontentsObjectMsg\x12n\n\x1b\x63ontents_object_request_msg\x18\x06 \x01(\x0b\x32-.syft_proto.messaging.v1.ObjectRequestMessageH\x00R\x18\x63ontentsObjectRequestMsg\x12\x66\n\x17\x63ontents_tensor_cmd_msg\x18\x07 \x01(\x0b\x32-.syft_proto.messaging.v1.TensorCommandMessageH\x00R\x14\x63ontentsTensorCmdMsg\x12`\n\x15\x63ontents_plan_cmd_msg\x18\x08 \x01(\x0b\x32+.syft_proto.messaging.v1.PlanCommandMessageH\x00R\x12\x63ontentsPlanCmdMsg\x12\x66\n\x17\x63ontents_worker_cmd_msg\x18\t \x01(\x0b\x32-.syft_proto.messaging.v1.WorkerCommandMessageH\x00R\x14\x63ontentsWorkerCmdMsg\x12X\n\x13\x63ontents_search_msg\x18\n \x01(\x0b\x32&.syft_proto.messaging.v1.SearchMessageH\x00R\x11\x63ontentsSearchMsgB\n\n\x08\x63ontents\"J\n\rIsNoneMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\"\xaa\x01\n\rObjectMessage\x12M\n\robject_tensor\x18\x01 \x01(\x0b\x32&.syft_proto.types.torch.v1.TorchTensorH\x00R\x0cobjectTensor\x12@\n\x0bobject_plan\x18\x02 \x01(\x0b\x32\x1d.syft_proto.execution.v1.PlanH\x00R\nobjectPlanB\x08\n\x06object\"\xc6\x01\n\x14TensorCommandMessage\x12N\n\x0b\x63omputation\x18\x01 \x01(\x0b\x32*.syft_proto.execution.v1.ComputationActionH\x00R\x0b\x63omputation\x12T\n\rcommunication\x18\x02 \x01(\x0b\x32,.syft_proto.execution.v1.CommunicationActionH\x00R\rcommunicationB\x08\n\x06\x61\x63tion\"W\n\x18\x46orceObjectDeleteMessage\x12;\n\nobject_ids\x18\x01 \x03(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\tobjectIds\"L\n\x0fGetShapeMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\"i\n\x14ObjectRequestMessage\x12\x39\n\tobject_id\x18\x01 \x01(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x08objectId\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason\"j\n\x12PlanCommandMessage\x12!\n\x0c\x63ommand_name\x18\x01 \x01(\tR\x0b\x63ommandName\x12\x31\n\x04\x61rgs\x18\x02 \x03(\x0b\x32\x1d.syft_proto.types.syft.v1.ArgR\x04\x61rgs\"l\n\x14WorkerCommandMessage\x12!\n\x0c\x63ommand_name\x18\x01 \x01(\tR\x0b\x63ommandName\x12\x31\n\x04\x61rgs\x18\x02 \x03(\x0b\x32\x1d.syft_proto.types.syft.v1.ArgR\x04\x61rgs\"C\n\rSearchMessage\x12\x32\n\x05query\x18\x01 \x03(\x0b\x32\x1c.syft_proto.types.syft.v1.IdR\x05queryB&\n$org.openmined.syftproto.messaging.v1b\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,syft__proto_dot_execution_dot_v1_dot_computation__action__pb2.DESCRIPTOR,syft__proto_dot_execution_dot_v1_dot_communication__action__pb2.DESCRIPTOR,syft__proto_dot_types_dot_syft_dot_v1_dot_id__pb2.DESCRIPTOR,syft__proto_dot_types_dot_torch_dot_v1_dot_tensor__pb2.DESCRIPTOR,syft__proto_dot_types_dot_syft_dot_v1_dot_arg__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,syft__proto_dot_execution_dot_v1_dot_computation__action__pb2.DESCRIPTOR,syft__proto_dot_execution_dot_v1_dot_communication__action__pb2.DESCRIPTOR,syft__proto_dot_execution_dot_v1_dot_plan__pb2.DESCRIPTOR,syft__proto_dot_types_dot_syft_dot_v1_dot_id__pb2.DESCRIPTOR,syft__proto_dot_types_dot_torch_dot_v1_dot_tensor__pb2.DESCRIPTOR,syft__proto_dot_types_dot_syft_dot_v1_dot_arg__pb2.DESCRIPTOR,])
 
 
 
@@ -127,8 +128,8 @@ _SYFTMESSAGE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=309,
-  serialized_end=1293,
+  serialized_start=345,
+  serialized_end=1329,
 )
 
 
@@ -159,8 +160,8 @@ _ISNONEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1295,
-  serialized_end=1369,
+  serialized_start=1331,
+  serialized_end=1405,
 )
 
 
@@ -173,12 +174,19 @@ _OBJECTMESSAGE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tensor', full_name='syft_proto.messaging.v1.ObjectMessage.tensor', index=0,
+      name='object_tensor', full_name='syft_proto.messaging.v1.ObjectMessage.object_tensor', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='tensor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+      serialized_options=None, json_name='objectTensor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='object_plan', full_name='syft_proto.messaging.v1.ObjectMessage.object_plan', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='objectPlan', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -190,9 +198,14 @@ _OBJECTMESSAGE = _descriptor.Descriptor(
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='object', full_name='syft_proto.messaging.v1.ObjectMessage.object',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
   ],
-  serialized_start=1371,
-  serialized_end=1450,
+  serialized_start=1408,
+  serialized_end=1578,
 )
 
 
@@ -235,8 +248,8 @@ _TENSORCOMMANDMESSAGE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1453,
-  serialized_end=1651,
+  serialized_start=1581,
+  serialized_end=1779,
 )
 
 
@@ -267,8 +280,8 @@ _FORCEOBJECTDELETEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1653,
-  serialized_end=1740,
+  serialized_start=1781,
+  serialized_end=1868,
 )
 
 
@@ -299,8 +312,8 @@ _GETSHAPEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1742,
-  serialized_end=1818,
+  serialized_start=1870,
+  serialized_end=1946,
 )
 
 
@@ -338,8 +351,8 @@ _OBJECTREQUESTMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1820,
-  serialized_end=1925,
+  serialized_start=1948,
+  serialized_end=2053,
 )
 
 
@@ -377,8 +390,8 @@ _PLANCOMMANDMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1927,
-  serialized_end=2033,
+  serialized_start=2055,
+  serialized_end=2161,
 )
 
 
@@ -416,8 +429,8 @@ _WORKERCOMMANDMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2035,
-  serialized_end=2143,
+  serialized_start=2163,
+  serialized_end=2271,
 )
 
 
@@ -448,8 +461,8 @@ _SEARCHMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2145,
-  serialized_end=2212,
+  serialized_start=2273,
+  serialized_end=2340,
 )
 
 _SYFTMESSAGE.fields_by_name['contents_empty_msg'].message_type = google_dot_protobuf_dot_empty__pb2._EMPTY
@@ -493,7 +506,14 @@ _SYFTMESSAGE.oneofs_by_name['contents'].fields.append(
   _SYFTMESSAGE.fields_by_name['contents_search_msg'])
 _SYFTMESSAGE.fields_by_name['contents_search_msg'].containing_oneof = _SYFTMESSAGE.oneofs_by_name['contents']
 _ISNONEMESSAGE.fields_by_name['object_id'].message_type = syft__proto_dot_types_dot_syft_dot_v1_dot_id__pb2._ID
-_OBJECTMESSAGE.fields_by_name['tensor'].message_type = syft__proto_dot_types_dot_torch_dot_v1_dot_tensor__pb2._TORCHTENSOR
+_OBJECTMESSAGE.fields_by_name['object_tensor'].message_type = syft__proto_dot_types_dot_torch_dot_v1_dot_tensor__pb2._TORCHTENSOR
+_OBJECTMESSAGE.fields_by_name['object_plan'].message_type = syft__proto_dot_execution_dot_v1_dot_plan__pb2._PLAN
+_OBJECTMESSAGE.oneofs_by_name['object'].fields.append(
+  _OBJECTMESSAGE.fields_by_name['object_tensor'])
+_OBJECTMESSAGE.fields_by_name['object_tensor'].containing_oneof = _OBJECTMESSAGE.oneofs_by_name['object']
+_OBJECTMESSAGE.oneofs_by_name['object'].fields.append(
+  _OBJECTMESSAGE.fields_by_name['object_plan'])
+_OBJECTMESSAGE.fields_by_name['object_plan'].containing_oneof = _OBJECTMESSAGE.oneofs_by_name['object']
 _TENSORCOMMANDMESSAGE.fields_by_name['computation'].message_type = syft__proto_dot_execution_dot_v1_dot_computation__action__pb2._COMPUTATIONACTION
 _TENSORCOMMANDMESSAGE.fields_by_name['communication'].message_type = syft__proto_dot_execution_dot_v1_dot_communication__action__pb2._COMMUNICATIONACTION
 _TENSORCOMMANDMESSAGE.oneofs_by_name['action'].fields.append(

@@ -13385,7 +13385,8 @@ $root.syft_proto = (function() {
                  * Properties of an ObjectMessage.
                  * @memberof syft_proto.messaging.v1
                  * @interface IObjectMessage
-                 * @property {syft_proto.types.torch.v1.ITorchTensor|null} [tensor] ObjectMessage tensor
+                 * @property {syft_proto.types.torch.v1.ITorchTensor|null} [object_tensor] ObjectMessage object_tensor
+                 * @property {syft_proto.execution.v1.IPlan|null} [object_plan] ObjectMessage object_plan
                  */
 
                 /**
@@ -13404,12 +13405,34 @@ $root.syft_proto = (function() {
                 }
 
                 /**
-                 * ObjectMessage tensor.
-                 * @member {syft_proto.types.torch.v1.ITorchTensor|null|undefined} tensor
+                 * ObjectMessage object_tensor.
+                 * @member {syft_proto.types.torch.v1.ITorchTensor|null|undefined} object_tensor
                  * @memberof syft_proto.messaging.v1.ObjectMessage
                  * @instance
                  */
-                ObjectMessage.prototype.tensor = null;
+                ObjectMessage.prototype.object_tensor = null;
+
+                /**
+                 * ObjectMessage object_plan.
+                 * @member {syft_proto.execution.v1.IPlan|null|undefined} object_plan
+                 * @memberof syft_proto.messaging.v1.ObjectMessage
+                 * @instance
+                 */
+                ObjectMessage.prototype.object_plan = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                /**
+                 * ObjectMessage object.
+                 * @member {"object_tensor"|"object_plan"|undefined} object
+                 * @memberof syft_proto.messaging.v1.ObjectMessage
+                 * @instance
+                 */
+                Object.defineProperty(ObjectMessage.prototype, "object", {
+                    get: $util.oneOfGetter($oneOfFields = ["object_tensor", "object_plan"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
 
                 /**
                  * Creates a new ObjectMessage instance using the specified properties.
@@ -13435,8 +13458,10 @@ $root.syft_proto = (function() {
                 ObjectMessage.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.tensor != null && message.hasOwnProperty("tensor"))
-                        $root.syft_proto.types.torch.v1.TorchTensor.encode(message.tensor, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.object_tensor != null && message.hasOwnProperty("object_tensor"))
+                        $root.syft_proto.types.torch.v1.TorchTensor.encode(message.object_tensor, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.object_plan != null && message.hasOwnProperty("object_plan"))
+                        $root.syft_proto.execution.v1.Plan.encode(message.object_plan, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
 
@@ -13472,7 +13497,10 @@ $root.syft_proto = (function() {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
                         case 1:
-                            message.tensor = $root.syft_proto.types.torch.v1.TorchTensor.decode(reader, reader.uint32());
+                            message.object_tensor = $root.syft_proto.types.torch.v1.TorchTensor.decode(reader, reader.uint32());
+                            break;
+                        case 2:
+                            message.object_plan = $root.syft_proto.execution.v1.Plan.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -13509,10 +13537,24 @@ $root.syft_proto = (function() {
                 ObjectMessage.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
-                    if (message.tensor != null && message.hasOwnProperty("tensor")) {
-                        var error = $root.syft_proto.types.torch.v1.TorchTensor.verify(message.tensor);
-                        if (error)
-                            return "tensor." + error;
+                    var properties = {};
+                    if (message.object_tensor != null && message.hasOwnProperty("object_tensor")) {
+                        properties.object = 1;
+                        {
+                            var error = $root.syft_proto.types.torch.v1.TorchTensor.verify(message.object_tensor);
+                            if (error)
+                                return "object_tensor." + error;
+                        }
+                    }
+                    if (message.object_plan != null && message.hasOwnProperty("object_plan")) {
+                        if (properties.object === 1)
+                            return "object: multiple values";
+                        properties.object = 1;
+                        {
+                            var error = $root.syft_proto.execution.v1.Plan.verify(message.object_plan);
+                            if (error)
+                                return "object_plan." + error;
+                        }
                     }
                     return null;
                 };
@@ -13529,10 +13571,15 @@ $root.syft_proto = (function() {
                     if (object instanceof $root.syft_proto.messaging.v1.ObjectMessage)
                         return object;
                     var message = new $root.syft_proto.messaging.v1.ObjectMessage();
-                    if (object.tensor != null) {
-                        if (typeof object.tensor !== "object")
-                            throw TypeError(".syft_proto.messaging.v1.ObjectMessage.tensor: object expected");
-                        message.tensor = $root.syft_proto.types.torch.v1.TorchTensor.fromObject(object.tensor);
+                    if (object.object_tensor != null) {
+                        if (typeof object.object_tensor !== "object")
+                            throw TypeError(".syft_proto.messaging.v1.ObjectMessage.object_tensor: object expected");
+                        message.object_tensor = $root.syft_proto.types.torch.v1.TorchTensor.fromObject(object.object_tensor);
+                    }
+                    if (object.object_plan != null) {
+                        if (typeof object.object_plan !== "object")
+                            throw TypeError(".syft_proto.messaging.v1.ObjectMessage.object_plan: object expected");
+                        message.object_plan = $root.syft_proto.execution.v1.Plan.fromObject(object.object_plan);
                     }
                     return message;
                 };
@@ -13550,10 +13597,16 @@ $root.syft_proto = (function() {
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults)
-                        object.tensor = null;
-                    if (message.tensor != null && message.hasOwnProperty("tensor"))
-                        object.tensor = $root.syft_proto.types.torch.v1.TorchTensor.toObject(message.tensor, options);
+                    if (message.object_tensor != null && message.hasOwnProperty("object_tensor")) {
+                        object.object_tensor = $root.syft_proto.types.torch.v1.TorchTensor.toObject(message.object_tensor, options);
+                        if (options.oneofs)
+                            object.object = "object_tensor";
+                    }
+                    if (message.object_plan != null && message.hasOwnProperty("object_plan")) {
+                        object.object_plan = $root.syft_proto.execution.v1.Plan.toObject(message.object_plan, options);
+                        if (options.oneofs)
+                            object.object = "object_plan";
+                    }
                     return object;
                 };
 
