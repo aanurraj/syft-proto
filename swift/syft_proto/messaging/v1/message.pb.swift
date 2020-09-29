@@ -204,27 +204,27 @@ public struct SyftProto_Messaging_V1_ObjectMessage {
 
   public var object: SyftProto_Messaging_V1_ObjectMessage.OneOf_Object? = nil
 
-  public var objectTensor: SyftProto_Types_Torch_V1_TorchTensor {
+  public var tensor: SyftProto_Types_Torch_V1_TorchTensor {
     get {
-      if case .objectTensor(let v)? = object {return v}
+      if case .tensor(let v)? = object {return v}
       return SyftProto_Types_Torch_V1_TorchTensor()
     }
-    set {object = .objectTensor(newValue)}
+    set {object = .tensor(newValue)}
   }
 
-  public var objectPlan: SyftProto_Execution_V1_Plan {
+  public var plan: SyftProto_Execution_V1_Plan {
     get {
-      if case .objectPlan(let v)? = object {return v}
+      if case .plan(let v)? = object {return v}
       return SyftProto_Execution_V1_Plan()
     }
-    set {object = .objectPlan(newValue)}
+    set {object = .plan(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public enum OneOf_Object: Equatable {
-    case objectTensor(SyftProto_Types_Torch_V1_TorchTensor)
-    case objectPlan(SyftProto_Execution_V1_Plan)
+    case tensor(SyftProto_Types_Torch_V1_TorchTensor)
+    case plan(SyftProto_Execution_V1_Plan)
 
   #if !swift(>=4.1)
     public static func ==(lhs: SyftProto_Messaging_V1_ObjectMessage.OneOf_Object, rhs: SyftProto_Messaging_V1_ObjectMessage.OneOf_Object) -> Bool {
@@ -232,12 +232,12 @@ public struct SyftProto_Messaging_V1_ObjectMessage {
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.objectTensor, .objectTensor): return {
-        guard case .objectTensor(let l) = lhs, case .objectTensor(let r) = rhs else { preconditionFailure() }
+      case (.tensor, .tensor): return {
+        guard case .tensor(let l) = lhs, case .tensor(let r) = rhs else { preconditionFailure() }
         return l == r
       }()
-      case (.objectPlan, .objectPlan): return {
-        guard case .objectPlan(let l) = lhs, case .objectPlan(let r) = rhs else { preconditionFailure() }
+      case (.plan, .plan): return {
+        guard case .plan(let l) = lhs, case .plan(let r) = rhs else { preconditionFailure() }
         return l == r
       }()
       default: return false
@@ -609,8 +609,8 @@ extension SyftProto_Messaging_V1_IsNoneMessage: SwiftProtobuf.Message, SwiftProt
 extension SyftProto_Messaging_V1_ObjectMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ObjectMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "object_tensor"),
-    2: .standard(proto: "object_plan"),
+    1: .same(proto: "tensor"),
+    2: .same(proto: "plan"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -623,19 +623,19 @@ extension SyftProto_Messaging_V1_ObjectMessage: SwiftProtobuf.Message, SwiftProt
         var v: SyftProto_Types_Torch_V1_TorchTensor?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .objectTensor(let m) = current {v = m}
+          if case .tensor(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .objectTensor(v)}
+        if let v = v {self.object = .tensor(v)}
       }()
       case 2: try {
         var v: SyftProto_Execution_V1_Plan?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .objectPlan(let m) = current {v = m}
+          if case .plan(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .objectPlan(v)}
+        if let v = v {self.object = .plan(v)}
       }()
       default: break
       }
@@ -647,12 +647,12 @@ extension SyftProto_Messaging_V1_ObjectMessage: SwiftProtobuf.Message, SwiftProt
     // allocates stack space for every case branch when no optimizations are
     // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.object {
-    case .objectTensor?: try {
-      guard case .objectTensor(let v)? = self.object else { preconditionFailure() }
+    case .tensor?: try {
+      guard case .tensor(let v)? = self.object else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     }()
-    case .objectPlan?: try {
-      guard case .objectPlan(let v)? = self.object else { preconditionFailure() }
+    case .plan?: try {
+      guard case .plan(let v)? = self.object else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     }()
     case nil: break

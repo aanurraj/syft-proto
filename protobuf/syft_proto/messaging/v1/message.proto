@@ -32,8 +32,8 @@ message IsNoneMessage {
 
 message ObjectMessage {
   oneof object {
-     syft_proto.types.torch.v1.TorchTensor object_tensor = 1;
-     syft_proto.execution.v1.Plan object_plan = 2;
+     syft_proto.types.torch.v1.TorchTensor tensor = 1;
+     syft_proto.execution.v1.Plan plan = 2;
   }
 }
 
